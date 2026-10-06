@@ -52,8 +52,8 @@ export type DayPick = {
 };
 
 export const brand = {
-  name: "Food Break Station",
-  short: "Food Break",
+  name: "DeliClub",
+  short: "DeliClub",
   tagline: "Healthy Labneh & Jebne at recess",
   cutoff: "Pre-order by 8:00 pm the day before",
   pauseRule: "Pause before 8:00 am on a school day to roll credits forward",

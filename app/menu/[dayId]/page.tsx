@@ -175,7 +175,7 @@ export default function DayBuilderPage() {
               }
               className={`rounded-full px-4 py-2 text-sm font-semibold ring-1 ${
                 on
-                  ? "bg-red-700 text-white ring-red-700"
+                  ? "bg-deep-red text-white ring-deep-red"
                   : "bg-card ring-foreground/15"
               }`}
             >

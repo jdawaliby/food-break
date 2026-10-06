@@ -3,7 +3,7 @@ import { brand } from "@/lib/mock-data";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-foreground/10 bg-foreground text-background">
+    <footer className="mt-auto border-t border-forest-dark bg-forest text-background">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
           <p className="font-display text-xl font-semibold">{brand.name}</p>

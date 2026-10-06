@@ -22,8 +22,8 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-citrus text-sm font-bold text-forest">
-              FB
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-sm font-bold text-forest">
+              DC
             </span>
             <span>
               <span className="font-display block text-lg leading-tight font-semibold">

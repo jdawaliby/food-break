@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eef8f1;
-  --foreground: #123024;
-  --accent: #2aa36b;
-  --accent-dark: #1d8254;
-  --forest: #0b6b4f;
-  --forest-dark: #085541;
-  --card: #ffffff;
-  --muted: #537266;
-  --citrus: #c9e86a;
+  --background: #e8e3c5;
+  --foreground: #114737;
+  --accent: #23785b;
+  --accent-dark: #1a6148;
+  --forest: #114737;
+  --forest-dark: #0c3629;
+  --card: #f5f1dd;
+  --muted: #3d5e50;
+  --citrus: #e7a35c;
+  --gold: #e7a35c;
+  --deep-red: #8f282c;
 }
 
 @theme inline {
@@ -22,6 +24,8 @@
   --color-card: var(--card);
   --color-muted: var(--muted);
   --color-citrus: var(--citrus);
+  --color-gold: var(--gold);
+  --color-deep-red: var(--deep-red);
   --font-sans: var(--font-outfit);
   --font-display: var(--font-outfit);
 }
@@ -29,8 +33,8 @@
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse 80% 50% at 100% -10%, #d4f3e0 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at -10% 20%, #e7f6c8 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 100% -10%, #ead9a8 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at -10% 20%, #c5d4b8 0%, transparent 50%);
   color: var(--foreground);
   font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }

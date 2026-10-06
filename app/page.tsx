@@ -6,7 +6,6 @@ import {
   cadences,
   heroImage,
   money,
-  sandwiches,
   stages,
 } from "@/lib/mock-data";
 
@@ -19,7 +18,7 @@ const steps = [
   {
     n: "02",
     title: "Cloud kitchen + campus kiosk",
-    body: "Boxes leave the cloud kitchen in a cooled van. Halloumi and other presses are finished warm at the on-site Food Break Station.",
+    body: "Boxes leave the cloud kitchen in a cooled van. Halloumi and other presses are finished warm at the on-site DeliClub kiosk.",
   },
   {
     n: "03",
@@ -90,7 +89,7 @@ export default function Home() {
                 href="/menu"
                 className="rounded-full border border-foreground/15 bg-card px-6 py-3 text-center text-sm font-bold"
               >
-                See the sandwiches
+                See the menu
               </Link>
             </div>
             <p className="mt-4 text-sm text-muted">{brand.cutoff} · {brand.delivery}</p>
@@ -116,38 +115,6 @@ export default function Home() {
               <h2 className="mt-2 text-xl font-bold">{step.title}</h2>
               <p className="mt-2 text-muted">{step.body}</p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl font-semibold">
-          Five healthy sandwiches
-        </h2>
-        <p className="mt-2 max-w-2xl text-muted">
-          Artisanal Lebanese Labneh and Jebne, plus a turkey/chicken club.
-          Parents pick daily. ECE profiles hide walnut recipes.
-        </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {sandwiches.map((s) => (
-            <article
-              key={s.id}
-              className="overflow-hidden rounded-3xl bg-card ring-1 ring-foreground/8"
-            >
-              <div className="relative aspect-[5/4]">
-                <Image
-                  src={s.image}
-                  alt={s.imageAlt}
-                  fill
-                  className="object-cover"
-                  sizes="33vw"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="font-bold">{s.name}</h3>
-                <p className="mt-1 text-sm text-muted">{s.description}</p>
-              </div>
-            </article>
           ))}
         </div>
       </section>
@@ -197,7 +164,7 @@ export default function Home() {
           </div>
           <Link
             href="/subscribe"
-            className="mt-10 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-bold text-forest hover:bg-citrus"
+            className="mt-10 inline-flex rounded-full bg-background px-5 py-2.5 text-sm font-bold text-forest hover:bg-gold"
           >
             Open the parent app
           </Link>

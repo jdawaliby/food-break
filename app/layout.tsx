@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Food Break Station — healthy Labneh & Jebne at recess",
+  title: "DeliClub — healthy Labneh & Jebne at recess",
   description:
     "Parent web app for pre-ordered Lebanese Labneh and Jebne sandwich boxes. Campus kiosk, named drop-boxes, weekly or monthly subscriptions.",
 };

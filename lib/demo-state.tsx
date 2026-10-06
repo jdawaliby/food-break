@@ -37,7 +37,7 @@ export type ParentState = {
   pausedTomorrow: boolean;
 };
 
-const STORAGE_KEY = "food-break-station-v1";
+const STORAGE_KEY = "deliclub-demo-state-v1";
 
 export const defaultState: ParentState = {
   mode: "logged-out",
