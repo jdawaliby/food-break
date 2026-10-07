@@ -98,17 +98,17 @@ export const cadences: {
 ];
 
 const img = {
-  saj: "https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&w=1200&q=80",
-  pita: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=80",
+  saj: "https://images.squarespace-cdn.com/content/v1/596f2f57d482e9ec36aa37e7/c122a9e3-c88b-4d39-bce4-5283db2268db/ladyspatula10174.jpg?format=2500w",
+  pita: "https://i.pinimg.com/736x/44/47/b8/4447b8ef9ad0a472ad78453df4ac5c1f.jpg",
   cheese:
     "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=1200&q=80",
   halloumi:
-    "https://images.unsplash.com/photo-1619860860774-1e2e17343432?auto=format&fit=crop&w=1200&q=80",
-  club: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=1200&q=80",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjuw-fCvc0y5pFofxyQx_UEZlCqYJ-bGqTYcaVeh-xnwhp1AKVqCY-hZKJ&s=10",
+  club: "https://emilybites.com/wp-content/uploads/2018/10/Cajun-Turkey-Club-Sandwich-4b-620x930.jpg",
   apple:
-    "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&w=600&q=80",
   grapes:
-    "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1542539150-c1ad944c6b64?auto=format&fit=crop&w=600&q=80",
   berries:
     "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80",
   cookie:
@@ -121,6 +121,8 @@ const img = {
     "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80",
   chips:
     "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=600&q=80",
+  zaatar:
+    "https://thesaltandsweet.com/wp-content/uploads/2022/03/wp-1646418289739.jpg",
   nuts: "https://images.unsplash.com/photo-1599599810769-bcde5a160d25?auto=format&fit=crop&w=600&q=80",
   dates:
     "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80",
@@ -211,7 +213,7 @@ export const extraCategories: ExtraCategory[] = [
     id: "salty",
     label: "Salty snack",
     options: [
-      { id: "zaatar-chips", name: "Baked za'atar pita chips", description: "Whole-wheat", image: img.chips, nutFree: true },
+      { id: "zaatar-chips", name: "Baked za'atar pita chips", description: "Whole-wheat", image: img.zaatar, nutFree: true },
       { id: "air-popped", name: "Air-popped chips / salty puffs", description: "Light crunch", image: img.chips, nutFree: true },
     ],
   },
