@@ -35,6 +35,7 @@ export type ParentState = {
   allergyIds: string[];
   cutoffPassed: boolean;
   pausedTomorrow: boolean;
+  defaultSandwichId: string | null;
 };
 
 const STORAGE_KEY = "deliclub-demo-state-v1";
@@ -53,6 +54,7 @@ export const defaultState: ParentState = {
   allergyIds: [],
   cutoffPassed: false,
   pausedTomorrow: false,
+  defaultSandwichId: null,
 };
 
 const listeners = new Set<() => void>();
@@ -107,6 +109,7 @@ type Ctx = {
   state: ParentState;
   setState: (patch: Partial<ParentState>) => void;
   setDayPick: (dayId: string, patch: Partial<DayPick>) => void;
+  setDefaultSandwich: (id: string) => void;
   applyMode: (mode: DemoMode) => void;
   completeCheckout: (input: {
     stage: StageId;
@@ -146,6 +149,10 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
         },
       },
     });
+  }, []);
+
+  const setDefaultSandwich = useCallback((id: string) => {
+    persist({ ...memory, defaultSandwichId: id });
   }, []);
 
   const applyMode = useCallback((mode: DemoMode) => {
@@ -217,8 +224,8 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ state, setState, setDayPick, applyMode, completeCheckout, reset }),
-    [state, setState, setDayPick, applyMode, completeCheckout, reset],
+    () => ({ state, setState, setDayPick, setDefaultSandwich, applyMode, completeCheckout, reset }),
+    [state, setState, setDayPick, setDefaultSandwich, applyMode, completeCheckout, reset],
   );
 
   return <DemoContext.Provider value={value}>{children}</DemoContext.Provider>;

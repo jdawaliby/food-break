@@ -114,7 +114,7 @@ const img = {
   cookie:
     "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
   pudding:
-    "https://images.unsplash.com/photo-1488477181946-6428a2929919?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1642423453088-69ad302f0d3c?auto=format&fit=crop&w=600&q=80",
   juice:
     "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80",
   laban:
@@ -130,7 +130,7 @@ const img = {
     "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1400&q=80",
 };
 
-export const heroImage = img.kiosk;
+export const heroImage = img.cheese;
 
 export const sandwiches: Sandwich[] = [
   {
@@ -497,11 +497,52 @@ export function pickedCount(picks: Record<string, DayPick>): number {
 export function nextOpenDay(
   picks: Record<string, DayPick>,
   afterId?: string,
+  cutoffPassed = false,
 ): string | null {
   const start = afterId ? schoolDays.findIndex((d) => d.id === afterId) + 1 : 0;
   for (let i = 0; i < schoolDays.length; i++) {
     const day = schoolDays[(start + i) % schoolDays.length];
+    if (isDayLocked(day.id, cutoffPassed)) continue;
     if (!(picks[day.id]?.sandwichIds.length > 0)) return day.id;
   }
   return null;
+}
+
+function startOfDay(d: Date): Date {
+  const next = new Date(d);
+  next.setHours(0, 0, 0, 0);
+  return next;
+}
+
+function schoolDayDate(dateLabel: string, now: Date): Date {
+  return startOfDay(new Date(`${dateLabel} ${now.getFullYear()}`));
+}
+
+export type DayLockReason = "past" | "cutoff";
+
+/** Past school days are always locked. After 8pm, only the next school day locks. */
+export function dayLockReason(
+  dayId: string,
+  cutoffPassed: boolean,
+  now = new Date(),
+): DayLockReason | null {
+  const day = schoolDays.find((d) => d.id === dayId);
+  if (!day) return "past";
+  const dayDate = schoolDayDate(day.date, now);
+  const today = startOfDay(now);
+  if (dayDate.getTime() < today.getTime()) return "past";
+  // Recess is over for today — treat it as passed.
+  if (dayDate.getTime() === today.getTime() && now.getHours() >= 15) return "past";
+  if (!cutoffPassed) return null;
+  const next = schoolDays.find((d) => schoolDayDate(d.date, now).getTime() > today.getTime());
+  if (next?.id === dayId) return "cutoff";
+  return null;
+}
+
+export function isDayLocked(
+  dayId: string,
+  cutoffPassed: boolean,
+  now = new Date(),
+): boolean {
+  return dayLockReason(dayId, cutoffPassed, now) !== null;
 }

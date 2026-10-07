@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/reveal";
 import {
   brand,
   boxes,
@@ -66,7 +67,7 @@ export default function Home() {
     <div>
       <section>
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
-          <div>
+          <Reveal>
             <p className="text-sm font-bold tracking-wide text-accent-dark uppercase">
               School A pilot · parent web app
             </p>
@@ -93,44 +94,48 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-4 text-sm text-muted">{brand.cutoff} · {brand.delivery}</p>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl ring-4 ring-citrus/50">
-            <Image
-              src={heroImage}
-              alt="Fresh vegetables and healthy lunch"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+          </Reveal>
+          <Reveal delayMs={120}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl ring-4 ring-citrus/50">
+              <Image
+                src={heroImage}
+                alt="Pressed white cheese sandwich with greens and tomato"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="border-y border-foreground/10 bg-card/60">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:grid-cols-3 sm:px-6">
-          {steps.map((step) => (
-            <div key={step.n}>
+          {steps.map((step, i) => (
+            <Reveal key={step.n} delayMs={i * 110}>
               <p className="font-display text-3xl text-accent">{step.n}</p>
               <h2 className="mt-2 text-xl font-bold">{step.title}</h2>
               <p className="mt-2 text-muted">{step.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="bg-forest text-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <h2 className="font-display text-3xl font-semibold">
-            Boxes by age, priced Daily → Weekly → Monthly
-          </h2>
-          <p className="mt-2 max-w-2xl text-white/80">
-            {cadences.map((c) => `${c.name}: ${c.discount}`).join(" · ")}.
-            ECE is nut-free. Secondary includes a Power Box with two sandwiches.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-3xl font-semibold">
+              Boxes by age, priced Daily → Weekly → Monthly
+            </h2>
+            <p className="mt-2 max-w-2xl text-white/80">
+              {cadences.map((c) => `${c.name}: ${c.discount}`).join(" · ")}.
+              ECE is nut-free. Secondary includes a Power Box with two sandwiches.
+            </p>
+          </Reveal>
           <div className="mt-8 space-y-10">
             {stages.map((stage) => (
-              <div key={stage.id}>
+              <Reveal key={stage.id}>
                 <p className="text-sm font-bold tracking-wide text-citrus uppercase">
                   {stage.name} · {stage.ages}
                 </p>
@@ -138,61 +143,65 @@ export default function Home() {
                 <div className="mt-4 grid gap-4 md:grid-cols-3">
                   {boxes
                     .filter((b) => b.stage === stage.id)
-                    .map((box) => (
-                      <div
-                        key={box.id}
-                        className="rounded-3xl bg-white/10 p-5 ring-1 ring-white/15"
-                      >
-                        <h3 className="text-lg font-bold">{box.name}</h3>
-                        <p className="mt-2 font-display text-3xl">
-                          {money(box.rates.daily.perDay)}
-                          <span className="text-base font-sans font-normal text-white/70">
-                            {" "}
-                            / day
-                          </span>
-                        </p>
-                        <p className="text-sm text-citrus">
-                          Weekly {money(box.rates.weekly.perDay)}/day · Monthly{" "}
-                          {money(box.rates.monthly.perDay)}/day
-                        </p>
-                        <p className="mt-2 text-sm text-white/80">{box.blurb}</p>
-                      </div>
+                    .map((box, i) => (
+                      <Reveal key={box.id} delayMs={i * 90}>
+                        <div className="rounded-3xl bg-white/10 p-5 ring-1 ring-white/15">
+                          <h3 className="text-lg font-bold">{box.name}</h3>
+                          <p className="mt-2 font-display text-3xl">
+                            {money(box.rates.daily.perDay)}
+                            <span className="text-base font-sans font-normal text-white/70">
+                              {" "}
+                              / day
+                            </span>
+                          </p>
+                          <p className="text-sm text-citrus">
+                            Weekly {money(box.rates.weekly.perDay)}/day · Monthly{" "}
+                            {money(box.rates.monthly.perDay)}/day
+                          </p>
+                          <p className="mt-2 text-sm text-white/80">{box.blurb}</p>
+                        </div>
+                      </Reveal>
                     ))}
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
-          <Link
-            href="/subscribe"
-            className="mt-10 inline-flex rounded-full bg-background px-5 py-2.5 text-sm font-bold text-forest hover:bg-gold"
-          >
-            Open the parent app
-          </Link>
+          <Reveal>
+            <Link
+              href="/subscribe"
+              className="mt-10 inline-flex rounded-full bg-background px-5 py-2.5 text-sm font-bold text-forest hover:bg-gold"
+            >
+              Open the parent app
+            </Link>
+          </Reveal>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-3">
-          {audiences.map((a) => (
-            <div key={a.title} className="rounded-3xl bg-card p-6 ring-1 ring-foreground/8">
-              <h2 className="text-xl font-bold">{a.title}</h2>
-              <p className="mt-2 text-muted">{a.body}</p>
-            </div>
+          {audiences.map((a, i) => (
+            <Reveal key={a.title} delayMs={i * 110}>
+              <div className="rounded-3xl bg-card p-6 ring-1 ring-foreground/8">
+                <h2 className="text-xl font-bold">{a.title}</h2>
+                <p className="mt-2 text-muted">{a.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
-        <h2 className="font-display text-3xl font-semibold">Questions</h2>
+        <Reveal>
+          <h2 className="font-display text-3xl font-semibold">Questions</h2>
+        </Reveal>
         <div className="mt-8 space-y-4">
-          {faqs.map((faq) => (
-            <details
-              key={faq.q}
-              className="rounded-2xl bg-card p-5 ring-1 ring-foreground/8"
-            >
-              <summary className="cursor-pointer font-bold">{faq.q}</summary>
-              <p className="mt-2 text-muted">{faq.a}</p>
-            </details>
+          {faqs.map((faq, i) => (
+            <Reveal key={faq.q} delayMs={i * 80}>
+              <details className="rounded-2xl bg-card p-5 ring-1 ring-foreground/8">
+                <summary className="cursor-pointer font-bold">{faq.q}</summary>
+                <p className="mt-2 text-muted">{faq.a}</p>
+              </details>
+            </Reveal>
           ))}
         </div>
       </section>

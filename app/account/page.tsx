@@ -9,6 +9,7 @@ import {
   getExtra,
   getSandwich,
   money,
+  dayLockReason,
   pickedCount,
   schoolDays,
   stages,
@@ -19,7 +20,6 @@ export default function AccountPage() {
   const box = getBox(state.boxId);
   const guest = state.mode !== "subscribed";
   const rate = box?.rates[state.cadence];
-  const canEdit = !state.cutoffPassed;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -118,16 +118,29 @@ export default function AccountPage() {
                 ) : (
                   <p className="mt-2 text-muted">No sandwich yet.</p>
                 )}
-                {canEdit ? (
-                  <Link
-                    href={`/menu/${day.id}`}
-                    className="mt-3 inline-block text-sm font-bold text-forest"
-                  >
-                    Edit {day.short}
-                  </Link>
-                ) : (
-                  <p className="mt-3 text-sm font-semibold text-muted">Locked after 8:00 pm</p>
-                )}
+                {(() => {
+                  const lock = dayLockReason(day.id, state.cutoffPassed);
+                  if (lock === "past") {
+                    return (
+                      <p className="mt-3 text-sm font-semibold text-muted">Passed</p>
+                    );
+                  }
+                  if (lock === "cutoff") {
+                    return (
+                      <p className="mt-3 text-sm font-semibold text-muted">
+                        Locked after 8:00 pm
+                      </p>
+                    );
+                  }
+                  return (
+                    <Link
+                      href={`/menu/${day.id}`}
+                      className="mt-3 inline-block text-sm font-bold text-forest"
+                    >
+                      Edit {day.short}
+                    </Link>
+                  );
+                })()}
               </section>
             );
           })}

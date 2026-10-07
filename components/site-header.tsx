@@ -22,8 +22,22 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-sm font-bold text-forest">
-              DC
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-forest"
+              aria-hidden
+            >
+              <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]">
+                <path
+                  d="M8.2 7.4a3.8 3.8 0 0 1 7.6 0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <rect x="4.6" y="7.8" width="14.8" height="12" rx="3" fill="currentColor" />
+                <path d="M4.6 12.2h14.8" stroke="#f4ab23" strokeWidth="1.7" />
+                <circle cx="12" cy="16.1" r="1.15" fill="#f4ab23" />
+              </svg>
             </span>
             <span>
               <span className="font-display block text-lg leading-tight font-semibold">

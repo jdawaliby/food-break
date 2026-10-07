@@ -8,6 +8,7 @@ import {
   allergies,
   brand,
   defaultExtras,
+  dayLockReason,
   extraCategories,
   getBox,
   nextOpenDay,
@@ -26,7 +27,8 @@ export default function DayBuilderPage() {
   const pick = state.picks[params.dayId];
   const sandwichIds = pick?.sandwichIds ?? [];
   const extras = pick?.extras ?? (box ? defaultExtras(box, state.stage) : {});
-  const blocked = state.cutoffPassed && state.mode === "subscribed";
+  const lock = dayLockReason(params.dayId, state.cutoffPassed);
+  const blocked = lock !== null;
 
   if (!day || !box) {
     return (
@@ -58,7 +60,7 @@ export default function DayBuilderPage() {
       ...state.picks,
       [selectedDay.id]: { sandwichIds: ids, extras },
     };
-    const next = nextOpenDay(merged, selectedDay.id);
+    const next = nextOpenDay(merged, selectedDay.id, state.cutoffPassed);
     if (next) router.push(`/menu/${next}`);
     else if (state.mode === "logged-out") router.push("/subscribe");
     else router.push("/account");
@@ -79,7 +81,9 @@ export default function DayBuilderPage() {
 
       {blocked ? (
         <p className="mt-6 rounded-2xl bg-accent/15 px-4 py-3 text-sm font-semibold">
-          8:00 pm cutoff has passed. This week&apos;s boxes are locked for packing.
+          {lock === "past"
+            ? `${day.label}'s drop-box already happened, so this day is locked.`
+            : `8:00 pm cutoff has passed. ${day.label}'s box is locked for packing. Later days can still be changed.`}
         </p>
       ) : null}
 
